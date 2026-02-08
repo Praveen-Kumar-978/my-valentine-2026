@@ -49,13 +49,8 @@ document.addEventListener('DOMContentLoaded', () => {
 "every second,\n" +
 "is spent loving you.\n\n" +
 
-"You're my Yesterday,\n" +
-"my Today,\n" +
-"my Tomorrow,\n" +
-"and everything in between.\n\n" +
-
-"Happy Valentine's Day, my Nishitha 💗❣️";
-        typewriterEl.textContent = ""; // clear
+"Happy Valentine's Day, My Nishitha 💗❣️";
+        typewriterEl.textContent = ""; // clearS
         let i = 0;
         const speed = 80; // ms per character - slower = 80–100, faster = 40–50
         // ... existing code ...
@@ -185,3 +180,4 @@ setTimeout(() => {
     });
 
 });
+
