@@ -41,17 +41,11 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         const fullText =
-"It's been 5 years since I met you,\n" +
-"but I'm still falling for you every single day.\n\n" +
 "I'm still fighting against the time that's kept us apart,\n" +
 "but I promise you — I'll win this battle one day.\n\n" +
 "Until that moment comes,\n" +
-"every heartbeat,\n" +
-"every second,\n" +
+"every heartbeat every second,\n" +
 "is spent loving you.\n\n" +
-"You're my Yesterday,\n" +
-"my Today,\n" +
-"my Tomorrow,\n" +
 "and everything in between.\n\n" +
 "Happy Valentine's Day, my Nishitha 💗❣️";
 
@@ -199,3 +193,4 @@ document.addEventListener('DOMContentLoaded', () => {
         noBtn.style.animation = 'shake 0.5s';
     });
 });
+
