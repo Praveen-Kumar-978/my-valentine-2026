@@ -80,7 +80,7 @@ h1 {
 /* RESPONSE – full message fades in */
 .response {
     font-family: 'Dancing Script', cursive;
-    font-size: 0.1em;
+    font-size: 2.1em;
     font-weight: 500;
     color: #c2185b;
     margin-top: 40px;
@@ -210,7 +210,10 @@ h1 {
     h1 { font-size: 2.6em; margin-bottom: 30px; }
     .btn { font-size: 1.2em; min-width: 200px; padding: 14px 28px; }
     .response { font-size: 1.8em; line-height: 1.65; padding: 0 20px; }
-    .message-text { font-size: 1.9em; }
+    .message-text {
+    text-align: center;
+    overflow-wrap: break-word;
+    hyphens: auto;
+    -webkit-hyphens: auto;}
     .escape-message { font-size: 1.3em; padding: 14px 22px; max-width: 92%; }
 }
-
