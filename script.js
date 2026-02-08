@@ -46,7 +46,6 @@ document.addEventListener('DOMContentLoaded', () => {
 "Until that moment comes,\n" +
 "every heartbeat every second,\n" +
 "is spent loving you.\n\n" +
-"and everything in between.\n\n" +
 "Happy Valentine's Day, my Nishitha 💗❣️";
 
         typewriterEl.textContent = "";
@@ -186,11 +185,12 @@ document.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => {
                 escapeMsg.classList.remove('show');
             }, 1200);
-        }, 5000);
+        }, 4000);
 
         phraseIndex = (phraseIndex + 1) % escapePhrases.length;
 
         noBtn.style.animation = 'shake 0.5s';
     });
 });
+
 
