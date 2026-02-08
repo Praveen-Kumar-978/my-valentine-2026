@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will You Be My Valentine? 💕</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Floating hearts -->
+    <div class="hearts-container hidden">
+        <div class="heart"></div>
+        <div class="heart"></div>
+        <div class="heart"></div>
+        <div class="heart"></div>
+        <div class="heart"></div>
+        <div class="heart"></div>
+        <div class="heart"></div>
+        <div class="heart"></div>
+        <div class="heart"></div>
+        <div class="heart"></div>
+    </div>
+
+    <div class="container">
+        <h1>Will you be my Valentine? 💕</h1>
+        
+        <div class="buttons">
+            <button id="yes-btn" class="btn yes">Yes! 😍</button>
+            <button id="no-btn" class="btn no">No... 🏃‍♂️</button>
+        </div>
+
+        <div id="escape-message" class="escape-message"></div>
+        
+        <div id="response" class="response hidden">
+            <span id="typewriter-text"></span>
+            <span class="cursor">|</span>
+        </div>
+    </div>
+
+    <audio id="bg-music" loop>
+        <source src="mysong.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <script src="script.js"></script>
+</body>
+</html>

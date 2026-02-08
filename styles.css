@@ -1,0 +1,254 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #ff9a9e, #fecfef);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #333;
+    overflow: hidden;
+}
+
+.container {
+    text-align: center;
+    max-width: 90%;
+    padding: 20px;
+    position: relative;
+}
+
+h1 {
+    font-size: 2.5em;
+    margin-bottom: 40px;
+    color: #e91e63;
+    animation: heartbeat 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes heartbeat {
+    from { transform: scale(1); }
+    to   { transform: scale(1.05); }
+}
+
+.buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+    margin: 40px auto;
+    max-width: 500px;
+}
+
+.btn {
+    padding: 16px 40px;
+    font-size: 1.3em;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    min-width: 180px;
+    user-select: none;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+.yes {
+    background: #4caf50;
+    color: white;
+}
+
+.no {
+    background: #f44336;
+    color: white;
+    position: relative;
+    transform: none;
+    z-index: 10;
+    touch-action: none;
+}
+
+.no.moving {
+    position: fixed !important;
+}
+
+.response {
+    font-size: 1.8em;
+    color: #4caf50;
+    margin-top: 40px;
+    opacity: 0;
+    transition: opacity 0.8s;
+    min-height: 1.5em;
+}
+
+.response.show {
+    opacity: 1;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Typewriter styling */
+#typewriter-text {
+    display: inline-block;
+}
+
+.cursor {
+    display: inline-block;
+    animation: blink 0.8s step-end infinite;
+    color: #e91e63;
+    font-weight: bold;
+}
+
+@keyframes blink {
+    from, to { opacity: 1; }
+    50%      { opacity: 0; }
+}
+
+/* ESCAPE MESSAGE */
+.escape-message {
+    position: fixed;
+    font-size: 1.3em;
+    font-weight: bold;
+    color: #c2185b;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 10px 18px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.25);
+    pointer-events: none;
+    opacity: 0;
+    transform: translate(-50%, 0);
+    transition: opacity 0.4s ease, transform 0.5s ease;
+    white-space: nowrap;
+    z-index: 20;
+    max-width: 90%;
+}
+
+.escape-message.show {
+    opacity: 1;
+    transform: translate(-50%, -70px);
+}
+
+.escape-message.fade-out {
+    opacity: 0;
+    transform: translate(-50%, -120px);
+}
+
+/* Animations */
+@keyframes panic {
+    0%, 100% { background: #f44336; }
+    50%  { background: #ff5722; }
+}
+
+@keyframes shake {
+    0%, 100% { transform: translate(-50%, -50%) rotate(0deg); }
+    25%  { transform: translate(-50%, -50%) rotate(4deg); }
+    75%  { transform: translate(-50%, -50%) rotate(-4deg); }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+    h1          { font-size: 2.1em; margin-bottom: 30px; }
+    .btn        { font-size: 1.2em; min-width: 200px; padding: 14px 28px; }
+    .escape-message { font-size: 1.1em; }
+    .response   { font-size: 1.5em; }
+}
+/* ─── FLOATING HEARTS BACKGROUND ─── */
+.hearts-container {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;       /* lets you click through hearts */
+    overflow: hidden;
+    z-index: 5;                 /* behind content but above background gradient */
+    opacity: 0;
+    transition: opacity 1.5s ease;
+}
+
+.hearts-container.visible {
+    opacity: 1;
+}
+
+.heart {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: #ff4d6d;        /* pink-red heart color */
+    transform: rotate(-45deg);
+    opacity: 0.7;
+    animation: float-up linear infinite;
+    border-radius: 50% 50% 0 0;
+}
+
+.heart::before,
+.heart::after {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: #ff4d6d;
+    border-radius: 50%;
+}
+
+.heart::before {
+    top: -10px;
+    left: 0;
+}
+
+.heart::after {
+    left: 10px;
+    top: 0;
+}
+
+/* Different sizes, delays & speeds for variety */
+.heart:nth-child(1)  { left: 10%;  animation-duration: 12s; animation-delay: 0s;    }
+.heart:nth-child(2)  { left: 20%;  animation-duration: 15s; animation-delay: 2s;    }
+.heart:nth-child(3)  { left: 30%;  animation-duration: 10s; animation-delay: 1s;    }
+.heart:nth-child(4)  { left: 40%;  animation-duration: 18s; animation-delay: 4s;    }
+.heart:nth-child(5)  { left: 50%;  animation-duration: 14s; animation-delay: 0.5s;  }
+.heart:nth-child(6)  { left: 60%;  animation-duration: 13s; animation-delay: 3s;    }
+.heart:nth-child(7)  { left: 70%;  animation-duration: 16s; animation-delay: 1.5s;  }
+.heart:nth-child(8)  { left: 80%;  animation-duration: 11s; animation-delay: 5s;    }
+.heart:nth-child(9)  { left: 15%;  animation-duration: 17s; animation-delay: 2.5s;  }
+.heart:nth-child(10) { left: 85%;  animation-duration: 19s; animation-delay: 0.8s;  }
+
+/* Floating animation: rise up slowly + slight side sway */
+@keyframes float-up {
+    0% {
+        bottom: -10%;
+        transform: translateX(0) rotate(-45deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.7;
+    }
+    100% {
+        bottom: 110%;
+        transform: translateX(30px) rotate(-45deg);  /* slight drift to right */
+        opacity: 0;
+    }
+}
+
+/* Optional: make some hearts drift left instead */
+.heart:nth-child(odd) {
+    animation-direction: normal;
+}
+
+.heart:nth-child(even) {
+    animation: float-up-left linear infinite;
+}
+
+@keyframes float-up-left {
+    0% {
+        bottom: -10%;
+        transform: translateX(0) rotate(-45deg);
+        opacity: 0;
+    }
+    10% { opacity: 0.7; }
+    100% {
+        bottom: 110%;
+        transform: translateX(-30px) rotate(-45deg);
+        opacity: 0;
+    }
+}
