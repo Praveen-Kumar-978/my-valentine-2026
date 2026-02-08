@@ -41,9 +41,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Typewriter effect
         const fullText = 
-                "It's been 5 years since I met you,\n" +
-"but I'm still falling for you every single day.\n\n" +
-
 "I'm still fighting against the time that's kept us apart,\n" +
 "but I promise you — I'll win this battle one day.\n\n" +
 
@@ -186,4 +183,5 @@ setTimeout(() => {
 
         noBtn.style.animation = 'shake 0.5s';
     });
+
 });
