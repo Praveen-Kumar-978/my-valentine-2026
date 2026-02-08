@@ -213,12 +213,4 @@ h1 {
     .message-text { font-size: 1.9em; }
     .escape-message { font-size: 1.3em; padding: 14px 22px; max-width: 92%; }
 }
-.escape-message {
-    font-size: 1.45em;           /* slightly bigger */
-    padding: 18px 28px;          /* more space inside */
-    min-width: 240px;            /* avoid too narrow */
-    max-width: 85%;              /* prevent overflow on small phones */
-    line-height: 1.5;
-    text-align: center;
-}
 
