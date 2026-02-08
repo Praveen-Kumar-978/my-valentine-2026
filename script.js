@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
 "every second,\n" +
 "is spent loving you.\n\n" +
 
-"Happy Valentine's Day, My Nishitha 💗❣️";
+"Happy Valentine's Day, my <span class="highlight-name">Nishitha</span> 💗❣️;
         typewriterEl.textContent = ""; // clearS
         let i = 0;
         const speed = 80; // ms per character - slower = 80–100, faster = 40–50
@@ -180,4 +180,5 @@ setTimeout(() => {
     });
 
 });
+
 
