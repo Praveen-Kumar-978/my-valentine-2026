@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let phraseIndex = 0;
     let isMoving = false;
 
-    // ─── YES ────────────────────────────────────────
+    // ─── YES BUTTON ────────────────────────────────────────
     yesBtn.addEventListener('click', () => {
         // Hide buttons
         yesBtn.style.display = 'none';
@@ -33,15 +33,14 @@ document.addEventListener('DOMContentLoaded', () => {
         response.classList.remove('hidden');
         response.classList.add('show');
 
-        // Start background music (mobile should allow after user click)
+        // Start background music
         audio.play().catch(err => {
             console.log("Audio play failed:", err);
-            // Optional: you can show a message "Tap again to play music" if needed
         });
 
         // Typewriter effect
         const fullText = 
-"I'm still fighting against the time that's kept us apart,\n" +
+"It's still fighting against the time that's kept us apart,\n" +
 "but I promise you — I'll win this battle one day.\n\n" +
 
 "Until that moment comes,\n" +
@@ -49,33 +48,34 @@ document.addEventListener('DOMContentLoaded', () => {
 "every second,\n" +
 "is spent loving you.\n\n" +
 
-"Happy Valentine's Day, my <span class="highlight-name">Nishitha</span> 💗❣️ ";
-        typewriterEl.textContent = ""; // clearS
+"Happy Valentine's Day, my <span class=\"highlight-name\">Nishitha</span> 💗❣️";
+
+        typewriterEl.textContent = ""; // clear
         let i = 0;
-        const speed = 80; // ms per character - slower = 80–100, faster = 40–50
-        // ... existing code ...
+        const speed = 80; // ms per character
 
-// Show floating hearts
-const heartsContainer = document.querySelector('.hearts-container');
-heartsContainer.classList.remove('hidden');
-heartsContainer.classList.add('visible');
-
-// Optional: fade in hearts slowly
-setTimeout(() => {
-    heartsContainer.style.opacity = '1';
-}, 500);
         function typeNext() {
             if (i < fullText.length) {
-                typewriterEl.textContent += fullText.charAt(i);
+                typewriterEl.innerHTML += fullText.charAt(i); // use innerHTML for <span>
                 i++;
                 setTimeout(typeNext, speed);
             } else {
-                // Optional: stop cursor blink after typing done
+                // Stop cursor blink after typing done
                 document.querySelector('.cursor').style.display = 'none';
             }
         }
 
         typeNext();
+
+        // Show floating hearts
+        const heartsContainer = document.querySelector('.hearts-container');
+        heartsContainer.classList.remove('hidden');
+        heartsContainer.classList.add('visible');
+
+        // Fade in hearts slowly
+        setTimeout(() => {
+            heartsContainer.style.opacity = '1';
+        }, 500);
     });
 
     // ─── HELPER: Keep button inside screen ──────────
@@ -90,7 +90,7 @@ setTimeout(() => {
         };
     }
 
-    // ─── MOVE AWAY WHEN CLOSE ───────────────────────
+    // ─── MOVE AWAY WHEN CURSOR/TOUCH IS CLOSE ───────
     function getCatchRadius() {
         return window.innerWidth < 768 ? 120 : 130;
     }
@@ -135,7 +135,7 @@ setTimeout(() => {
         if (e.touches?.length) escapeFromPoint(e.touches[0].clientX, e.touches[0].clientY);
     }, { passive: true });
 
-    // ─── CLICK / TAP → JUMP + MESSAGE ───────────────
+    // ─── CLICK / TAP ON NO → JUMP + MESSAGE ───────────────
     noBtn.addEventListener('click', e => {
         e.preventDefault();
         e.stopPropagation();
@@ -178,8 +178,4 @@ setTimeout(() => {
 
         noBtn.style.animation = 'shake 0.5s';
     });
-
 });
-
-
-
