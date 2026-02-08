@@ -2,25 +2,22 @@ document.addEventListener('DOMContentLoaded', () => {
     const yesBtn       = document.getElementById('yes-btn');
     const noBtn        = document.getElementById('no-btn');
     const response     = document.getElementById('response');
-    const typewriterEl = document.getElementById('typewriter-text');
     const escapeMsg    = document.getElementById('escape-message');
     const audio        = document.getElementById('bg-music');
+    const heading      = document.querySelector('h1');  // ← new: grab the h1
 
     const escapePhrases = [
-        "Oh nooo... 😭",
-        "Wait—come back! 🥺",
-        "Too fast for me... 💨",
-        "Don't leave me hanging! 😢",
-        "You're breaking my heart... 💔",
-        "Hey! That's not fair! 😤",
-        "One more chance please? 🥹",
-        "Running away already? 🏃‍♂️",
-        "I wasn't ready! 😅",
-        "You almost got me... 👀",
-        "Why are you so cruel? 😭",
+        "Sadist 👀",
+        "Overaction Cheyaku 😤",
+        "Chalu inka !!! ",
+        "Champa Pagluthundhi 😤",
+        "Anthena 🥹",
+        " 💔💔",
+        " Accept chey ra ",
+        " Chocolate konistha",
+        "Poni Ice Cream",
         "My feelings!! 💔💔",
         "Catch me if you can~ 😏",
-        "...I'm scared... 😨",
         "Okay okay I'll stop... maybe"
     ];
 
@@ -33,61 +30,28 @@ document.addEventListener('DOMContentLoaded', () => {
         noBtn.style.display = 'none';
         escapeMsg.classList.remove('show');
 
+        // Hide the heading with fade-out
+        if (heading) {
+            heading.style.transition = 'opacity 1s ease';
+            heading.style.opacity = '0';
+            setTimeout(() => {
+                heading.style.display = 'none';  // fully remove after fade
+            }, 1000);
+        }
+
         response.classList.remove('hidden');
         response.classList.add('show');
 
+        // Play music
         audio.play().catch(err => {
             console.log("Audio play failed:", err);
         });
 
-        const fullText =
-"I'm still fighting against the time that's kept us apart,\n" +
-"but I promise you — I'll win this battle one day.\n\n" +
-"Until that moment comes,\n" +
-"every heartbeat every second,\n" +
-"is spent loving you.\n\n" +
-"Happy Valentine's Day, my Nishitha 💗❣️";
-
-        typewriterEl.textContent = "";
-        let i = 0;
-        const speed = 60;
-
-        function typeNext() {
-            if (i < fullText.length) {
-                typewriterEl.textContent += fullText.charAt(i);
-                i++;
-                setTimeout(typeNext, speed);
-            } else {
-                document.querySelector('.cursor').style.display = 'none';
-            }
-        }
-        typeNext();
-
-        // Show envelope after typing roughly finishes
-        setTimeout(() => {
-            const envelopeWrapper = document.querySelector('.envelope-wrapper');
-            if (envelopeWrapper) {
-                envelopeWrapper.classList.remove('hidden');
-                envelopeWrapper.classList.add('show');
-            }
-        }, 2800); // ~2.8 seconds — adjust if typing feels too fast/slow
-
-        // Auto-open envelope ~2 seconds after it appears
-        setTimeout(() => {
-            const envelope = document.getElementById('envelope');
-            if (envelope) {
-                envelope.classList.add('open');
-            }
-        }, 5200);
+        // Show floating hearts
+        const heartsContainer = document.querySelector('.hearts-container');
+        heartsContainer.classList.remove('hidden');
+        heartsContainer.classList.add('visible');
     });
-
-    // Toggle envelope open/close on click/tap (mobile friendly)
-    const envelope = document.getElementById('envelope');
-    if (envelope) {
-        envelope.addEventListener('click', function() {
-            this.classList.toggle('open');
-        });
-    }
 
     // ─── HELPER: Keep button inside screen ──────────
     function clampPosition(left, top, width, height) {
@@ -100,7 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
     }
 
-    // ─── MOVE AWAY WHEN CURSOR/TOUCH CLOSE ──────────
+    // ─── MOVE AWAY WHEN CLOSE ───────────────────────
     function getCatchRadius() {
         return window.innerWidth < 768 ? 120 : 130;
     }
@@ -145,52 +109,59 @@ document.addEventListener('DOMContentLoaded', () => {
         if (e.touches?.length) escapeFromPoint(e.touches[0].clientX, e.touches[0].clientY);
     }, { passive: true });
 
-    // ─── CLICK / TAP ON NO → JUMP + LONGER MESSAGE ───
+    // ─── CLICK / TAP ON NO → JUMP + MESSAGE ─────────
     noBtn.addEventListener('click', e => {
         e.preventDefault();
-        e.stopPropagation();
+    e.stopPropagation();
 
-        noBtn.classList.add('moving');
+    noBtn.classList.add('moving');
 
-        const rect = noBtn.getBoundingClientRect();
-        const padding = 40;
+    const rect = noBtn.getBoundingClientRect();
+    const padding = 60;           // bigger padding to keep away from edges
+    const safeMargin = Math.min(window.innerWidth, window.innerHeight) * 0.3;  // ~30% safe zone from center
 
-        let newLeft = padding + Math.random() * (window.innerWidth - rect.width - padding * 2);
-        let newTop  = padding + Math.random() * (window.innerHeight - rect.height - padding * 2);
+    // Avoid center area where message appears
+    let newLeft, newTop;
+    do {
+        newLeft = padding + Math.random() * (window.innerWidth - rect.width - padding * 2);
+        newTop  = padding + Math.random() * (window.innerHeight - rect.height - padding * 2);
+    } while (
+        // Avoid center rectangle (message area roughly)
+        newLeft > window.innerWidth * 0.35 && newLeft < window.innerWidth * 0.65 &&
+        newTop  > window.innerHeight * 0.25 && newTop < window.innerHeight * 0.75
+    );
 
-        const clamped = clampPosition(newLeft, newTop, rect.width, rect.height);
-        newLeft = clamped.left;
-        newTop  = clamped.top;
+    const clamped = clampPosition(newLeft, newTop, rect.width, rect.height);
+    newLeft = clamped.left;
+    newTop  = clamped.top;
 
-        noBtn.style.transition = 'left 0.55s ease-out, top 0.55s ease-out';
-        noBtn.style.left = newLeft + 'px';
-        noBtn.style.top = newTop + 'px';
-        noBtn.style.transform = 'none';
+    noBtn.style.transition = 'left 0.55s ease-out, top 0.55s ease-out';
+    noBtn.style.left = newLeft + 'px';
+    noBtn.style.top  = newTop + 'px';
+    noBtn.style.transform = 'none';
 
-        const msgX = newLeft + rect.width / 2;
-        const msgY = newTop - 20; // a bit higher so it's easier to read
+    // Position message above the button
+    const msgX = newLeft + rect.width / 2;
+    const msgY = newTop - 40;  // higher so it's more visible
 
-        escapeMsg.textContent = escapePhrases[phraseIndex];
-        escapeMsg.style.left = msgX + 'px';
-        escapeMsg.style.top  = msgY + 'px';
-        escapeMsg.style.transform = 'translateX(-50%)';
+    escapeMsg.textContent = escapePhrases[phraseIndex];
+    escapeMsg.style.left = msgX + 'px';
+    escapeMsg.style.top  = msgY + 'px';
+    escapeMsg.style.transform = 'translateX(-50%)';
 
-        // Show message
-        escapeMsg.classList.remove('fade-out');
-        escapeMsg.classList.add('show');
+    escapeMsg.classList.remove('fade-out');
+    escapeMsg.classList.add('show');
 
-        // Stay visible 5 seconds → then fade out over 1.2 seconds
+    // Stay visible 8 seconds → fade out over 1.5 seconds
+    setTimeout(() => {
+        escapeMsg.classList.add('fade-out');
         setTimeout(() => {
-            escapeMsg.classList.add('fade-out');
-            setTimeout(() => {
-                escapeMsg.classList.remove('show');
-            }, 1200);
-        }, 4000);
+            escapeMsg.classList.remove('show');
+        }, 1500);
+    }, 8000);
 
-        phraseIndex = (phraseIndex + 1) % escapePhrases.length;
+    phraseIndex = (phraseIndex + 1) % escapePhrases.length;
 
-        noBtn.style.animation = 'shake 0.5s';
+    noBtn.style.animation = 'shake 0.5s';
     });
 });
-
-
