@@ -80,16 +80,16 @@ h1 {
 /* RESPONSE – full message fades in */
 .response {
     font-family: 'Dancing Script', cursive;
-    font-size: 2.1em;
+    font-size: 1.9em;
     font-weight: 500;
     color: #c2185b;
-    margin-top: 40px;
+    margin-top: 30px;
     opacity: 0;
     transition: opacity 1.5s ease;
-    line-height: 1.7;
-    letter-spacing: 0.5px;
+    line-height: 1.5;
+    letter-spacing: 0.4px;
     text-shadow: 1px 1px 4px rgba(0,0,0,0.15);
-    max-width: 100%;
+    max-width: 95%;
     padding: 0 15px;
     box-sizing: border-box;
 }
@@ -205,15 +205,29 @@ h1 {
     100% { bottom: 110%; transform: translateX(-30px) rotate(-45deg); opacity: 0; }
 }
 
-/* MOBILE ADJUSTMENTS */
+/* MOBILE ADJUSTMENTS – make text readable and fully visible */
 @media (max-width: 600px) {
-    h1 { font-size: 2.6em; margin-bottom: 30px; }
-    .btn { font-size: 1.2em; min-width: 200px; padding: 14px 28px; }
-    .response { font-size: 1.8em; line-height: 1.65; padding: 0 20px; }
+    h1 { font-size: 2.4em; margin-bottom: 25px; }
+    .btn { font-size: 1.15em; min-width: 180px; padding: 12px 24px; }
+    
+    .response {
+        font-size: 1.65em;             /* smaller but still romantic & readable */
+        line-height: 1.6;
+        letter-spacing: 0.3px;
+        padding: 0 25px 40px;          /* more bottom padding for scroll */
+        margin-top: 20px;
+        max-height: 65vh;              /* leave space for hearts & scroll */
+        overflow-y: auto;
+    }
+
     .message-text {
-    text-align: center;
-    overflow-wrap: break-word;
-    hyphens: auto;
-    -webkit-hyphens: auto;}
-    .escape-message { font-size: 1.3em; padding: 14px 22px; max-width: 92%; }
+        font-size: 1.7em;              /* ensure inner text scales properly */
+    }
+
+    .escape-message {
+        font-size: 1.25em;
+        padding: 14px 22px;
+        max-width: 90%;
+        min-width: 200px;
+    }
 }
