@@ -89,7 +89,16 @@ h1 {
     letter-spacing: 0.8px;
     text-shadow: 1px 1px 4px rgba(0,0,0,0.15);
     min-height: 2em;
-    white-space: pre-wrap;     /* respects \n line breaks */
+    white-space: pre-wrap;          /* preserves \n line breaks */
+    overflow-wrap: break-word;      /* modern: break long words */
+    word-wrap: break-word;          /* legacy support */
+    hyphens: auto;                  /* automatic hyphenation */
+    -webkit-hyphens: auto;          /* Safari/iOS */
+    -ms-hyphens: auto;              /* Edge */
+    word-break: normal;             /* don't break mid-word unless necessary */
+    max-width: 100%;                /* prevent overflow outside container */
+    padding: 0 15px;                /* breathing room on sides */
+    box-sizing: border-box;
 }
 
 .response.show {
@@ -212,10 +221,39 @@ h1 {
     100% { bottom: 110%; transform: translateX(-30px) rotate(-45deg); opacity: 0; }
 }
 
-/* Mobile adjustments */
+/* ─── MOBILE ADJUSTMENTS ─── */
 @media (max-width: 600px) {
-    h1              { font-size: 2.6em; margin-bottom: 30px; }
-    .btn            { font-size: 1.2em; min-width: 200px; padding: 14px 28px; }
-    .response       { font-size: 1.8em; line-height: 1.65; }
-    .escape-message { font-size: 1.15em; }
+    h1 {
+        font-size: 2.6em;
+        margin-bottom: 30px;
+    }
+
+    .btn {
+        font-size: 1.2em;
+        min-width: 200px;
+        padding: 14px 28px;
+    }
+
+    .response {
+        font-size: 1.8em;
+        line-height: 1.65;
+        letter-spacing: 0.4px;          /* reduced to help fit long words */
+        padding: 0 20px;                /* more side space */
+        max-width: 100%;
+        box-sizing: border-box;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        hyphens: auto;
+        -webkit-hyphens: auto;
+        -ms-hyphens: auto;
+        word-break: normal;             /* safe default */
+        /* Fallback if still issues: */
+        /* word-break: break-word; */   /* uncomment only if long words still cut off */
+    }
+
+    .escape-message {
+        font-size: 1.15em;
+        padding: 10px 16px;
+        max-width: 95%;
+    }
 }
