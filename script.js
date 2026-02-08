@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
 "every second,\n" +
 "is spent loving you.\n\n" +
 
-"Happy Valentine's Day, my <span class=\"highlight-name\">Nishitha</span> 💗❣️";
+"Happy Valentine's Day My Nishitha💗❣️";
 
         typewriterEl.textContent = ""; // clear
         let i = 0;
@@ -179,3 +179,4 @@ document.addEventListener('DOMContentLoaded', () => {
         noBtn.style.animation = 'shake 0.5s';
     });
 });
+
